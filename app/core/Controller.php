@@ -1,5 +1,6 @@
 <?php 
     namespace app\core;
+    session_start();
     // use app\core\View;
 
     abstract class Controller {
@@ -10,20 +11,21 @@
         protected $count = 0;
 
         public function __construct($route) {
-            // debug($this->products);
-            // echo $this->t;
-            // echo $route;
-            // echo 'CONTROLLER';
+            if ($_GET['action'] == 'logout') {
+                unset($_SESSION['auth_user']);
+            
+                // header("Location: " . $_SERVER['HTTP_REFERER']); // редирект на ласт страницу на которой находился пользователь
+                header("Location: /sign-in");
+            }
+
             $this->route = $route;
-            // debug($route);
             $model_name = '\app\models\\' . ucfirst($route['controller']);
+            
             if (class_exists($model_name)) {
                 $this->model = new $model_name;
-                // $this->model->getProducts();
             }            
+            
             $this->view = new View($route);
-            // debug($this->view->render());
-            // echo $this->a;
 
             $qtys = $this->model->getQtys($this->user_id);
             $this->count = array_reduce($qtys, function($sum, $item) {

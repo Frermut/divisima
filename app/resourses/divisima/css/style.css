@@ -2170,10 +2170,10 @@ ol {
 	height: 100%;
 	right: 0;
 	top: 0;
-	background: #ddd;
+	
 }
 
-.map iframe {
+.map img {
 	width: 100%;
 	height: 100%;
 }
@@ -2272,7 +2272,7 @@ ol {
 	.map {
 		position: relative;
 		width: 100%;
-		background: #ddd;
+		background: #fff;
 		height: 400px;
 		margin-top: 70px;
 	}
@@ -2360,7 +2360,7 @@ ol {
 	.map {
 		position: relative;
 		width: 100%;
-		background: #ddd;
+		background: #fff;
 		height: 400px;
 		margin-top: 70px;
 	}

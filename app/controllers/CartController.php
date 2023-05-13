@@ -5,6 +5,11 @@ use app\core\Controller;
 class CartController extends Controller {
     public function indexAction()
     {
+        if(!$_SESSION["auth_user"]) {
+            header("Location: /");
+            die();
+        }
+        
         $res = $this->model->getProducts($this->user_id);
 
         if ($_GET['action'] and $_GET['action'] == "clear_cart") {

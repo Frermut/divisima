@@ -8,6 +8,16 @@ return [
         'controller' => 'cart',
         'action' => 'index'
     ],
+    PATH . '/sign-in' => [
+        'controller' => 'login',
+        'action' => 'index'
+    ],
+    PATH . '/sign-up' => [
+        'controller' => 'register',
+        'action' => 'index'
+    ],
+    
+    // Fetch urls
     PATH . 'mainHandler' => [
         'controller' => 'main',
         'action' => 'requestHandler'
@@ -16,19 +26,6 @@ return [
         'controller' => 'cart',
         'action' => 'requestHandler'
     ],
-    // 'posts/edit' => [
-    //     'controller' => 'posts',
-    //     'action' => 'edit'
-    // ]
-    // 'posts/delete' => [
-    //     'controller' => 'posts',
-    //     'action' => 'delete'
-    // ]
+
 ];
 ?>
-
-<!-- http://divisima/posts/show -->
-
-
-<!-- http://divisima/dasdasd -->
-

@@ -47,27 +47,39 @@
 							<img src="img/logo.png" alt="">
 						</a>
 					</div>
+
 					<div class="col-xl-6 col-lg-5">
 						<form class="header-search-form">
 							<input type="text" placeholder="Search on divisima ....">
 							<button><i class="flaticon-search"></i></button>
 						</form>
 					</div>
+
 					<div class="col-xl-4 col-lg-5">
 						<div class="user-panel">
+							
+
+						<?php if (!$_SESSION['auth_user']) : ?>
 							<div class="up-item">
 								<i class="flaticon-profile"></i>
-								<a href="#">Sign</a> In or <a href="#">Create Account</a>
+								<a href="/sign-in">Sign In </a> or <a href="/sign-up">Create Account</a>
 							</div>
+						<?php else : ?>
 							<div class="up-item">
+								<i class="flaticon-profile"></i>
+								<a href="?action=logout">Log Out</a></a>
+								&emsp;
 								<div class="shopping-card">
 									<i class="flaticon-bag"></i>
 									<span id="cart-count"><?=$data['count']?></span>
 								</div>
 								<a href="/cart">Shopping Cart</a>
 							</div>
+						<?php endif; ?>	
+
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
