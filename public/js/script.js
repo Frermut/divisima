@@ -68,7 +68,7 @@ if (document.querySelector('.cart-table-warp')) {
                             document.querySelector("#cart-count").textContent = data['count'];
                             if (data.qtys.length > 0) {
 
-                                var isProduct = data.qtys.some(function (obj) {
+                                let isProduct = data.qtys.some(function (obj) {
                                     return obj.product_id == id;
                                 })
 
@@ -110,5 +110,39 @@ if (document.querySelector('.cart-table-warp')) {
 
 }
 
+document.querySelector(".header-search-form a").addEventListener("click", event=>{
+    event.preventDefault();
+    document.querySelector("#products").scrollIntoView({
+        behavior: 'smooth',
+
+    })
+    let searchValue = event.target.closest('div').querySelector("input").value;
+
+    let products = data.filter(element => {
+        if (element.name.toLowerCase().indexOf(searchValue.toLowerCase()) != -1) {
+            return element; 
+        }
+    });
+    console.log(products);
+
+
+    fetch('/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'credentials': 'same-origin',
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        // body: obj
+        body: `products=${products}`
+    })
+    .then(function (resp) {
+        return resp.text();
+    })
+    .then(function (data) {
+        console.log(data);
+        // document.querySelector("#cart-count").textContent = count;
+    })
+})
 
 // console.log(document.querySelector('.product-filter-section .row').children);

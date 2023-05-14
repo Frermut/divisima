@@ -23,6 +23,7 @@ class LoginController extends Controller {
                     if(password_verify($password, $isUser->password)) {
                         //авторизация
                         $_SESSION['auth_user'] = $isUser->id;
+                        
                         header("Location: /");
                         die();
                     } else {
@@ -36,7 +37,7 @@ class LoginController extends Controller {
             }
         }
 
-        $this->view->render(123);
+        $this->view->render(null);
         
     }
 

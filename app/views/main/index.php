@@ -168,7 +168,7 @@
 				<h2>BROWSE TOP SELLING PRODUCTS</h2>
 			</div>
 
-			<ul class="d-flex row justify-content-center product-filter-menu">
+			<ul id="products" class="d-flex row justify-content-center product-filter-menu">
 				<?php foreach ($data['categories'] as $category) :?>
 					<li><a href="#"><?=$category->name?></a></li>
 				<?php endforeach;?>

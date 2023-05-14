@@ -7,30 +7,36 @@
         protected $route;
         protected $view;
         protected $model;
-        protected $user_id = 1;
+        protected $user_id; 
         protected $count = 0;
 
         public function __construct($route) {
+            $this->user_id = $_SESSION['auth_user'];
             if ($_GET['action'] == 'logout') {
                 unset($_SESSION['auth_user']);
-            
                 // header("Location: " . $_SERVER['HTTP_REFERER']); // редирект на ласт страницу на которой находился пользователь
                 header("Location: /sign-in");
             }
-
+          
             $this->route = $route;
             $model_name = '\app\models\\' . ucfirst($route['controller']);
             
             if (class_exists($model_name)) {
                 $this->model = new $model_name;
             }            
-            
+
             $this->view = new View($route);
 
-            $qtys = $this->model->getQtys($this->user_id);
-            $this->count = array_reduce($qtys, function($sum, $item) {
-                return $sum+=$item->qty;
-            },0);
+            if ($this->user_id) {
+                $qtys = $this->model->getQtys($this->user_id);
+                $this->count = array_reduce($qtys, function($sum, $item) {
+                    return $sum+=$item->qty;
+                },0);
+            } else {
+                $this->count = null;
+            }
+
+           
         }
 
         public function isFetch()

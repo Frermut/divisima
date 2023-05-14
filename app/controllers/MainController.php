@@ -11,6 +11,7 @@ class MainController extends Controller {
         // $products = $this->model->getProducts('select');
         // $categories = $this->model->getCategories();
         $products = $this->model->fetchAll('products');
+        $_SESSION['products'] = $products;
         $categories = $this->model->fetchAll('categories');
         // if ($_GET['id']) {
         //     $this->model->addProductIntoCart($_GET['id']);
@@ -66,3 +67,4 @@ class MainController extends Controller {
 // $c = new MainController();
 // $c->del();
 ?>
+
